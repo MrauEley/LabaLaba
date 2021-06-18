@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="dist/css/bootstrap.css">
+  <link rel="stylesheet" href="dist/css/style.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <title>Компьютерный практикум №3.Git и GitHub</title>
+  <script>
+    var Theme_number = 1;
+    var Default_theme = 1;
+    var Ext = "less";
+    //var Ext = "css";
+
+    function getUrl(num) {
+      return Ext + "/" + Ext + ".style" + num + ".css";
+    }
+
+    function getThemeNumber() {
+      if (Theme_number == 3) {
+        Theme_number = 1;
+        console.log(Theme_number);
+        return Theme_number;
+      }
+      Theme_number = Theme_number + 1;
+      console.log(Theme_number);
+      return Theme_number;
+    }
+
+    function initialize() {
+      var link = document.createElement("link");
+      link.setAttribute("rel", "stylesheet");
+      link.setAttribute("href", getUrl(Default_theme));
+      document.head.prepend(link);
+    }
+
+    function initListener() {
+      document
+        .querySelector(".mynav__theme")
+        .addEventListener("click", changeTheme);
+    }
+
+    function changeTheme() {
+      var themeNumber = getThemeNumber();
+
+      alert("Theme number: " + themeNumber);
+
+      document.head
+        .querySelector("link")
+        .setAttribute("href", getUrl(themeNumber));
+    }
+
+    initialize();
+
+    window.addEventListener("load", initListener);
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <a class="navbar-brand" href="index.html">
+          <img src="img/logo.png" width="30" height="30">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav nav-pills mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link text-light" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                aria-controls="home" aria-selected="true">
+                Главная
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house"
+                  viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+                  <path fill-rule="evenodd"
+                    d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
+                </svg>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" id="gallery-tab" data-toggle="tab" href="#gallery" role="tab"
+                aria-controls="gallery" aria-selected="false">
+                Галерея
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-card-image" viewBox="0 0 16 16">
+                  <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                  <path
+                    d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z" />
+                </svg>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" id="testing-tab" data-toggle="tab" href="#testing" role="tab"
+                aria-controls="testing" aria-selected="false">
+                Тестирование
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-check-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                  <path
+                    d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                </svg>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" id="less-tab" data-toggle="tab" href="#less" role="tab"
+                aria-controls="less" aria-selected="false">
+                Less
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-paint-bucket" viewBox="0 0 16 16">
+                  <path
+                    d="M6.192 2.78c-.458-.677-.927-1.248-1.35-1.643a2.972 2.972 0 0 0-.71-.515c-.217-.104-.56-.205-.882-.02-.367.213-.427.63-.43.896-.003.304.064.664.173 1.044.196.687.556 1.528 1.035 2.402L.752 8.22c-.277.277-.269.656-.218.918.055.283.187.593.36.903.348.627.92 1.361 1.626 2.068.707.707 1.441 1.278 2.068 1.626.31.173.62.305.903.36.262.05.64.059.918-.218l5.615-5.615c.118.257.092.512.05.939-.03.292-.068.665-.073 1.176v.123h.003a1 1 0 0 0 1.993 0H14v-.057a1.01 1.01 0 0 0-.004-.117c-.055-1.25-.7-2.738-1.86-3.494a4.322 4.322 0 0 0-.211-.434c-.349-.626-.92-1.36-1.627-2.067-.707-.707-1.441-1.279-2.068-1.627-.31-.172-.62-.304-.903-.36-.262-.05-.64-.058-.918.219l-.217.216zM4.16 1.867c.381.356.844.922 1.311 1.632l-.704.705c-.382-.727-.66-1.402-.813-1.938a3.283 3.283 0 0 1-.131-.673c.091.061.204.15.337.274zm.394 3.965c.54.852 1.107 1.567 1.607 2.033a.5.5 0 1 0 .682-.732c-.453-.422-1.017-1.136-1.564-2.027l1.088-1.088c.054.12.115.243.183.365.349.627.92 1.361 1.627 2.068.706.707 1.44 1.278 2.068 1.626.122.068.244.13.365.183l-4.861 4.862a.571.571 0 0 1-.068-.01c-.137-.027-.342-.104-.608-.252-.524-.292-1.186-.8-1.846-1.46-.66-.66-1.168-1.32-1.46-1.846-.147-.265-.225-.47-.251-.607a.573.573 0 0 1-.01-.068l3.048-3.047zm2.87-1.935a2.44 2.44 0 0 1-.241-.561c.135.033.324.11.562.241.524.292 1.186.8 1.846 1.46.45.45.83.901 1.118 1.31a3.497 3.497 0 0 0-1.066.091 11.27 11.27 0 0 1-.76-.694c-.66-.66-1.167-1.322-1.458-1.847z" />
+                </svg>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab"
+                aria-controls="contacts" aria-selected="false">
+                Контакты
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-envelope" viewBox="0 0 16 16">
+                  <path
+                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383l-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+          <ul class="nav  ml-auto">
+            <li class="nav-item">
+              <a href="#" class="nav-link  text-light" data-toggle="modal" data-target="#exampleModal">
+                Вход
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+                  <path fill-rule="evenodd"
+                    d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="tab-content">
+      <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="row">
+          <div class="col">
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <div class="single-post">
+                    <h3 class="post-category">Front end</h3>
+                    <h2 class="post-title"><a href="#">Bootstrap</a></h2>
+                    <p>Bootstrap (также известен как Twitter Bootstrap) — свободный набор инструментов для создания
+                      сайтов и
+                      веб-приложений. Включает в себя HTML- и CSS-шаблоны оформления для типографики, веб-форм, кнопок,
+                      меток, блоков навигации и прочих компонентов веб-интерфейса, включая JavaScript-расширения.
+                      Bootstrap использует современные наработки в области CSS и HTML, поэтому необходимо быть
+                      внимательным
+                      при поддержке старых браузеров.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grid-posts">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="card">
+                      <img class="card-img-top" src="img/a1.jpg" alt="Card image cap">
+                      <div class="card-body">
+                        <h3 class="post-category">Front end</h3>
+                        <h5 class="post-title">LESS</h5>
+                        <p class="card-text">LESS (Leaner Style Sheets, компактная таблица стилей)— это динамический
+                          язык
+                          стилей, который разработал Alexis Sellier. Он создан под влиянием языка стилей Sass, и, в свою
+                          очередь, оказал влияние на его новый синтаксис «SCSS», в котором также использован синтаксис,
+                          являющийся расширением СSS.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="card">
+                      <img class="card-img-top" src="img/a2.jpg" alt="Card image cap">
+                      <div class="card-body">
+                        <h3 class="post-category">Back end</h3>
+                        <h5 class="post-title">C++</h5>
+                        <p class="card-text">C++ (читается си-плюс-плюс) — компилируемый, статически типизированный язык
+                          программирования общего назначения. Поддерживает такие парадигмы программирования, как
+                          процедурное
+                          программирование, объектно-ориентированное программирование, обобщённое программирование. </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="card">
+                      <img class="card-img-top" src="img/a3.jpg" alt="Card image cap">
+                      <div class="card-body">
+                        <h3 class="post-category">Back end</h3>
+                        <h5 class="post-title">C#</h5>
+                        <p class="card-text">C# (произносится си шарп) — объектно-ориентированный язык программирования.
+                          Разработан в 1998—2001 годах группой инженеров компании Microsoft под руководством Андерса
+                          Хейлсберга и Скотта Вильтаумота как язык разработки приложений для платформы Microsoft .NET
+                          Framework.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="card">
+                      <img class="card-img-top" src="img/a4.jpg" alt="Card image cap">
+                      <div class="card-body">
+                        <h3 class="post-category">Front end</h3>
+                        <h5 class="post-title">CSS</h5>
+                        <p class="card-text">CSS — формальный язык описания внешнего вида документа, написанного с
+                          использованием языка разметки. Преимущественно используется как средство описания, оформления
+                          внешнего вида веб-страниц, написанных с помощью языков разметки HTML и XHTML, но может также
+                          применяться к любым XML-документам, например, к SVG или XUL.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col text-center after-posts">
+                    <button type="button" class="btn btn-outline-secondary Load-more">
+                      Load more
+                      <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div id="accordion">
+                      <div class="card">
+                        <div class="card-header" id="headingOne">
+                          <h5 class="mb-0">
+                            <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseOne"
+                              aria-expanded="true" aria-controls="collapseOne">
+                              LESS
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                          <div class="card-body">
+                            LESS (Leaner Style Sheets, компактная таблица стилей)— это динамический язык стилей, который
+                            разработал Alexis Sellier. Он создан под влиянием языка стилей Sass, и, в свою очередь,
+                            оказал
+                            влияние на его новый синтаксис «SCSS», в котором также использован синтаксис, являющийся
+                            расширением СSS.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingTwo">
+                          <h5 class="mb-0">
+                            <button class="btn btn-primary collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                              aria-expanded="false" aria-controls="collapseTwo">
+                              C++
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                          <div class="card-body">
+                            C++ (читается си-плюс-плюс) — компилируемый, статически типизированный язык программирования
+                            общего назначения. Поддерживает такие парадигмы программирования, как процедурное
+                            программирование, объектно-ориентированное программирование, обобщённое программирование
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingThree">
+                          <h5 class="mb-0">
+                            <button class="btn btn-primary collapsed" data-toggle="collapse"
+                              data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              C#
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                          data-parent="#accordion">
+                          <div class="card-body">
+                            C# (произносится си шарп) — объектно-ориентированный язык программирования. Разработан в
+                            1998—2001 годах группой инженеров компании Microsoft под руководством Андерса Хейлсберга и
+                            Скотта Вильтаумота как язык разработки приложений для платформы Microsoft .NET Framework.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingThree">
+                          <h5 class="mb-0">
+                            <button class="btn btn-primary collapsed" data-toggle="collapse" data-target="#collapseFour"
+                              aria-expanded="false" aria-controls="collapseThree">
+                              CSS
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                          <div class="card-body">
+                            CSS — формальный язык описания внешнего вида документа, написанного с использованием языка
+                            разметки. Преимущественно используется как средство описания, оформления внешнего вида
+                            веб-страниц, написанных с помощью языков разметки HTML и XHTML, но может также применяться к
+                            любым XML-документам, например, к SVG или XUL.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div />
+              </div>
+            </div>
+          </div>
+          <div class="col" style="background-color: red;">123</div>
+        </div>
+      </div>
+
+
+
+      <div class="tab-pane" id="gallery" role="tabpanel" aria-labelledby="gallery-tab">
+        <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="img/a1.jpg" alt="Первый слайд">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="img/a2.jpg" alt="Второй слайд">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="img/a3.jpg" alt="Третий слайд">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <div class="container page-top">
+          <div class="row">
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+              <a href="img/a1.jpg" class="fancybox" rel="ligthbox">
+                <img src="img/a1.jpg" class="zoom img-fluid " alt="">
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+              <a href="img/a2.jpg" class="fancybox" rel="ligthbox">
+                <img src="img/a2.jpg" class="zoom img-fluid" alt="">
+              </a>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+              <a href="img/a3.jpg" class="fancybox" rel="ligthbox">
+                <img src="img/a3.jpg" class="zoom img-fluid " alt="">
+              </a>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+              <a href="img/a4.jpg" class="fancybox" rel="ligthbox">
+                <img src="img/a4.jpg" class="zoom img-fluid " alt="">
+              </a>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+              <a href="img/a5.jpg" class="fancybox" rel="ligthbox">
+                <img src="img/a5.jpg" class="zoom img-fluid " alt="">
+              </a>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+              <a href="img/a6.jpg" class="fancybox" rel="ligthbox">
+                <img src="img/a6.jpg" class="zoom img-fluid " alt="">
+              </a>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+              <a href="img/a7.jpg" class="fancybox" rel="ligthbox">
+                <img src="img/a7.jpg" class="zoom img-fluid " alt="">
+              </a>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+              <a href="img/a8.jpg" class="fancybox" rel="ligthbox">
+                <img src="img/a8.jpg" class="zoom img-fluid " alt="">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <form class>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email адрес:</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Введите Email адрес">
+                  <small id="emailHelp" class="form-text text-muted">Введите Email адрес, на который будет отправлен
+                    ответ на Ваше письмо.</small>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Текст письма:</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  <small id="emailHelp" class="form-text text-muted">Введите текст письма.</small>
+                </div>
+                <div class="text-center">
+                  <div class="btn-group-vertical" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-primary option-button">Отправить директору
+                      компании</button>
+                    <button type="button" class="btn btn-primary option-button">Отправить менеджеру</button>
+                    <button type="button" class="btn btn-primary option-button">Отправить в отдел рекламы</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="less" role="tabpanel" aria-labelledby="less-tab">
+        <div class="wrapper">
+          <nav class="mynav">
+            <button class="mynav__theme">Change theme</button>
+            <ul class="mynav__menu">
+              <li class="mynav__item"><a href="#" class="mynav__link">Home</a></li>
+              <li class="mynav__item"><a href="#" class="mynav__link">About</a></li>
+              <li class="mynav__item"><a href="#" class="mynav__link">Items</a></li>
+              <li class="mynav__item"><a href="#" class="mynav__link">Contact</a></li>
+            </ul>
+          </nav>
+
+          <section class="main">
+            <div class="main__content">
+              <div class="main__tile main__tile--danger">
+                <div class="main__header">Product 1</div>
+                <ul class="main__features">
+                  <li class="main__item">Feature 1<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 2<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 3<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 4</li>
+                  <li class="main__item">Feature 5</li>
+                </ul>
+
+                <div class="main__footer">
+                  <button class="main__button main__button--danger">Click on me!</button>
+                </div>
+              </div>
+
+              <div class="main__tile main__tile--warning">
+                <div class="main__header">Product 2</div>
+                <ul class="main__features">
+                  <li class="main__item">Feature 1<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 2</li>
+                  <li class="main__item">Feature 3<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 4<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 5</li>
+                </ul>
+
+                <div class="main__footer">
+                  <button class="main__button main__button--warning">Click on me!</button>
+                </div>
+              </div>
+
+              <div class="main__tile main__tile--primary">
+                <div class="main__header">Product 3</div>
+                <ul class="main__features">
+                  <li class="main__item">Feature 1</li>
+                  <li class="main__item">Feature 2<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 3<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 4<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 5</li>
+                </ul>
+
+                <div class="main__footer">
+                  <button class="main__button main__button--primary">Click on me!</button>
+                </div>
+              </div>
+
+              <div class="main__tile main__tile--success">
+                <div class="main__header">Product 4</div>
+                <ul class="main__features">
+                  <li class="main__item">Feature 1<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 2</li>
+                  <li class="main__item">Feature 3</li>
+                  <li class="main__item">Feature 4<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 5<span class="main__plus">+</span></li>
+                </ul>
+
+                <div class="main__footer">
+                  <button class="main__button main__button--success">Click on me!</button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+      </div>
+
+
+      <div class="tab-pane" id="testing" role="tabpanel" aria-labelledby="testing-tab">
+        <div class="container border border-primary mt-2">
+          <div class="row justify-content-evenly">
+            <div class="col-lg-6 col-md-4 col-sm-6 col-12 first-testing-column text-primary bg-dark text-center">
+              LESS (Leaner Style Sheets, компактная таблица стилей)— это динамический язык стилей, который
+              разработал
+              Alexis Sellier. Он создан под влиянием языка стилей Sass, и, в свою очередь, оказал влияние на его
+              новый
+              синтаксис «SCSS», в котором также использован синтаксис, являющийся расширением СSS.
+            </div>
+            <div
+              class="col-lg-4 col-md-6 col-sm-6 col-12 font-weight-bold second-testing-column text-lowercase text-md-end">
+              C++ (читается си-плюс-плюс) — компилируемый, статически типизированный язык программирования общего
+              назначения. Поддерживает такие парадигмы программирования, как процедурное программирование,
+              объектно-ориентированное программирование, обобщённое программирование.
+            </div>
+          </div>
+        </div>
+        <div class="container mt-2">
+          <div class="row justify-content-center">
+            <div class="col-md-10 col-sm-12 col-12 table-responsive">
+              <table class="table table-bordered">
+                <caption class="text-secondary">
+                  Тестовая Таблица
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-table"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
+                  </svg>
+                </caption>
+                <thead>
+                  <th scope="col">Номер Строки</th>
+                  <th scope="col">Первый Столбец</th>
+                  <th scope="col">Второй Столбец</th>
+                  <th scope="col">Третий Столбец</th>
+                  <th scope="col">Четвёртый Столбец</th>
+                  <th scope="col">Пятый Столбец</th>
+                  <th scope="col">Шестой Столбец</th>
+                  <th scope="col">Седьмой Столбец</th>
+                  <th scope="col">Восьмой Столбец</th>
+                  <th scope="col">Девятый Столбец</th>
+                </thead>
+                <tbody>
+                  <tr class="bg-primary">
+                    <th scope="row">1</th>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                  </tr>
+                  <tr class="bg-success">
+                    <th scope="row">3</th>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                  </tr>
+                  <tr class="bg-warning">
+                    <th scope="row">5</th>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">6</th>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                  </tr>
+                  <tr class="bg-danger">
+                    <th scope="row">7</th>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">8</th>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                  </tr>
+                  <tr class="bg-info">
+                    <th scope="row">9</th>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                    <td>Клеточка</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title m-1" id="exampleModalLabel">Авторизация на сайте</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <form>
+              <div class="form-froup">
+                <label for="exampleInputEmail">E-mail адрес:</label>
+                <input type="email" class="form-control" id="exampleInputEmail" aria-describdby="emailHelp"
+                  placeholder="Email" required>
+                <small id="emailHelp" class="form-text text-muted">Введите ваш e-mail</small>
+              </div>
+              <div class="form-froup">
+                <label for="exampleInputPass">Пароль:</label>
+                <input type="password" class="form-control" id="exampleInputpass" aria-describdby="passHelp"
+                  placeholder="Password" required>
+                <small id="passHelp" class="form-text text-muted">Пароль должен содержать минимум 8 символов</small>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label py-2">
+                  <input type="checkbox" class="form-check-input">Запомнить меня</input>
+                </label>
+              </div>
+              <button type="submit" class="btn btn-primary">Отправить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="d-sm-flex justify-content-between">
+        <div class="footer-left">
+          <p>Тестовий сайт 2021 год</p>
+        </div>
+        <div class="footer-right">
+          <span>Подписаться</span>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="node_modules/less/dist/less.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+</body>
+
+</html>
